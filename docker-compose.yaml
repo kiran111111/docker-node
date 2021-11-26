@@ -1,0 +1,44 @@
+version: '2'
+services:
+  api:
+    build: ./backend
+    ports :
+      - '80:80'
+    volumes: 
+    - logs:/app/logs
+    - ./backend:/app
+    - /app/node_modules
+    env_file: 
+      - ./backend/.env  
+    networks:
+      - first-net   
+  client:
+    build : ./frontend
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - ./frontend/src:/app/src  
+    networks:
+      - first-net
+    stdin_open: true
+    tty: true
+    depends_on: 
+      -  api
+  mongodb:
+    image : 'mongo'
+    volumes :
+      - data:/data/db
+    ports: 
+      - '27017:27017'  
+    env_file: 
+      - ./backend/.env    
+    networks:
+      - first-net     
+
+volumes: 
+  logs:
+  data:      
+
+
+networks:
+  first-net:  
