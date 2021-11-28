@@ -86,7 +86,13 @@ app.delete('/goals/:id', async (req, res) => {
   }
 });
 
-app.listen(8080);
+app.listen(8080,(err)=>{
+  if(err){
+    console.log(err)
+  }else{
+    console.log("connected")
+  }
+});
 
 // mongoose.connect(
 //   `mongodb://mongodb:27017/course-goals`,
