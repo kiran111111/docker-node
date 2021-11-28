@@ -16,8 +16,6 @@ const accessLogStream = fs.createWriteStream(
 );
 
 
-
-
 app.use(morgan('combined', { stream: accessLogStream }));
 //sdkfjsdkfjdsklf
 //fdsgffdsgdfh
@@ -88,20 +86,22 @@ app.delete('/goals/:id', async (req, res) => {
   }
 });
 
-mongoose.connect(
-  `mongodb://mongodb:27017/course-goals`,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  (err) => {
+app.listen(8080);
+
+// mongoose.connect(
+//   `mongodb://mongodb:27017/course-goals`,
+//   {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+//   (err) => {
    
-    if (err) {
-      console.error('FAILED TO CONNECT TO MONGODB');
-      console.error(err);
-    } else {
-      console.log('CONNECTED TO MONGODB!!');
-      app.listen(process.env.port);
-    }
-  }
-);
+//     if (err) {
+//       console.error('FAILED TO CONNECT TO MONGODB');
+//       console.error(err);
+//     } else {
+//       console.log('CONNECTED TO MONGODB!!');
+//       app.listen(process.env.port);
+//     }
+//   }
+// );
