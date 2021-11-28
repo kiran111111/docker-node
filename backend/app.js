@@ -15,6 +15,9 @@ const accessLogStream = fs.createWriteStream(
   { flags: 'a' }
 );
 
+
+
+
 app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(bodyParser.json());
